@@ -1,0 +1,12 @@
+# Ignore dependency folders (too heavy)
+node_modules/
+*/node_modules/
+
+# Ignore secrets (passwords)
+.env
+*/.env
+
+# Ignore build files
+dist/
+build/
+.DS_Store
