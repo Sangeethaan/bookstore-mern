@@ -4,6 +4,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const bookRoutes = require('./routes/bookRoutes');
 const orderRoutes = require('./routes/orderRoutes');
+const feedbackRoutes = require('./routes/feedbackRoutes');
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 
 app.use('/api/books', bookRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/feedback', feedbackRoutes);
 
 const PORT = process.env.PORT || 5000;
 

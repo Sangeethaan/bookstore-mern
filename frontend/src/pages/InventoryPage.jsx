@@ -82,46 +82,46 @@ const InventoryPage = () => {
         <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-3 mb-8">
                 <FaBoxOpen className="text-3xl text-blue-600" />
-                <h1 className="text-3xl font-bold text-gray-800">Inventory Management</h1>
+                <h1 className="text-3xl font-bold">Inventory Management</h1>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Form Section */}
                 <div className="lg:col-span-1">
-                    <div className="bg-white p-6 rounded-xl shadow-md sticky top-4">
+                    <div className="theme-card p-6 rounded-xl shadow-md sticky top-4">
                         <h2 className="text-xl font-bold mb-4 border-b pb-2 flex items-center gap-2">
                             {isEditing ? <FaEdit className="text-yellow-500" /> : <FaPlus className="text-green-500" />}
                             {isEditing ? 'Edit Book' : 'Add New Book'}
                         </h2>
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Title</label>
+                                <label className="block text-sm font-medium">Title</label>
                                 <input name="title" value={formData.title} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Author</label>
+                                <label className="block text-sm font-medium">Author</label>
                                 <input name="author" value={formData.author} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required />
                             </div>
                             <div className="grid grid-cols-2 gap-2">
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">Price (₹)</label>
+                                    <label className="block text-sm font-medium">Price (₹)</label>
                                     <input name="price" type="number" step="0.01" value={formData.price} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-gray-700">Stock</label>
+                                    <label className="block text-sm font-medium">Stock</label>
                                     <input name="stockQuantity" type="number" value={formData.stockQuantity} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Genre</label>
+                                <label className="block text-sm font-medium">Genre</label>
                                 <input name="genre" value={formData.genre} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" required />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Image URL</label>
+                                <label className="block text-sm font-medium">Image URL</label>
                                 <input name="imageUrl" value={formData.imageUrl} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Description</label>
+                                <label className="block text-sm font-medium">Description</label>
                                 <textarea name="description" rows="3" value={formData.description} onChange={handleChange} className="mt-1 w-full border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500" />
                             </div>
 
@@ -141,28 +141,28 @@ const InventoryPage = () => {
 
                 {/* List Section */}
                 <div className="lg:col-span-2">
-                    <div className="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div className="theme-card rounded-xl shadow-md overflow-hidden">
                         <div className="overflow-x-auto">
                             <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
+                                <thead className="bg-opacity-50 border-b border-[var(--border-color)]">
                                     <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Book Info</th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price/Stock</th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider opacity-70">Book Info</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider opacity-70">Price/Stock</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider opacity-70">Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
+                                <tbody className="divide-y divide-[var(--border-color)]">
                                     {loading ? (
                                         <tr><td colSpan="3" className="text-center py-4">Loading...</td></tr>
                                     ) : books.map(book => (
-                                        <tr key={book._id} className="hover:bg-gray-50">
+                                        <tr key={book._id} className="hover:bg-white/5 transition-colors">
                                             <td className="px-6 py-4">
-                                                <div className="text-sm font-medium text-gray-900">{book.title}</div>
-                                                <div className="text-sm text-gray-500">{book.author}</div>
+                                                <div className="text-sm font-medium">{book.title}</div>
+                                                <div className="text-sm opacity-70">{book.author}</div>
                                                 <div className="text-xs text-gray-400 bg-gray-100 inline-block px-2 py-0.5 rounded mt-1">{book.genre}</div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="text-sm text-gray-900 font-bold">₹{book.price}</div>
+                                                <div className="text-sm font-bold">₹{book.price}</div>
                                                 <div className={`text-sm ${book.stockQuantity < 5 ? 'text-red-500 font-bold' : 'text-green-600'}`}>
                                                     {book.stockQuantity} Left
                                                 </div>

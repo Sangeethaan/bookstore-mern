@@ -1,1 +1,99 @@
 @import "tailwindcss";
+
+:root {
+    --bg-color: #f8fafc;
+    /* Very light gray-blue */
+    --card-bg: #ffffff;
+    --navbar-bg: #2563eb;
+    /* Original Blue */
+    --text-color: #0f172a;
+    /* Deep Slate */
+    --border-color: #e2e8f0;
+    --primary-color: #2563eb;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode {
+    --bg-color: #0f172a;
+    /* Deep Slate 900 */
+    --card-bg: #1e293b;
+    /* Slate 800 */
+    --navbar-bg: #1e293b;
+    /* Slate 800 - match card */
+    --text-color: #cbd5e1;
+    /* Slate 300 */
+    --border-color: #334155;
+    /* Slate 700 */
+    --input-bg: #334155;
+    /* Slate 700 */
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    /* Soft dark glow */
+}
+
+body,
+.theme-card,
+.theme-nav,
+input,
+textarea,
+button {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+input,
+textarea {
+    background-color: var(--input-bg);
+    /* Use variable now */
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.theme-card {
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px var(--shadow-color), 0 2px 4px -1px var(--shadow-color);
+}
+
+.theme-nav {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+@layer utilities {
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+
+    .transform-style-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+
+    .rotate-y-180 {
+        transform: rotateY(180deg);
+    }
+}

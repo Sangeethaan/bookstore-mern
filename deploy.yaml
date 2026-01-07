@@ -1,0 +1,31 @@
+---
+- name: Automated Deployment to Minikube
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  tasks:
+    - name: Apply Kubernetes Configurations
+      # This is the "Cheat": We just ask Ansible to run the shell command we used earlier
+      command: kubectl apply -f k8s/
+      register: k8s_output
+
+    - name: Display Deployment Status
+      debug:
+        msg: "{{ k8s_output.stdout_lines }}"
+
+    - name: Verify Pods are Running
+      command: kubectl get pods -n bookstore
+      register: pod_status
+
+    - name: Show Pod Status
+      debug:
+        msg: "{{ pod_status.stdout_lines }}"
+
+    - name: Get the Frontend URL
+      command: minikube service frontend-service -n bookstore --url
+      register: minikube_url
+
+    - name: CLICK THIS LINK TO OPEN APP
+      debug:
+        msg: "Your app is running at: {{ minikube_url.stdout }}"

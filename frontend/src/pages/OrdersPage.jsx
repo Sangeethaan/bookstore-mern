@@ -27,17 +27,17 @@ const OrdersPage = () => {
 
     return (
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-800">
+            <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
                 <FaHistory className="text-blue-600" /> My Orders
             </h1>
 
             {/* Search Section */}
-            <div className="bg-white p-6 rounded-xl shadow-md mb-8">
+            <div className="theme-card p-6 rounded-xl shadow-md mb-8">
                 <form onSubmit={handleSearch} className="flex gap-4">
                     <input
                         type="text"
                         placeholder="Enter your name to view history..."
-                        className="flex-1 border rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none"
+                        className="flex-1 border border-[var(--border-color)] rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 outline-none bg-[var(--input-bg)] text-[var(--text-color)]"
                         value={searchName}
                         onChange={(e) => setSearchName(e.target.value)}
                         required
@@ -56,19 +56,19 @@ const OrdersPage = () => {
             {searched && (
                 <div className="space-y-6">
                     {orders.length === 0 ? (
-                        <div className="text-center py-12 bg-gray-50 rounded-lg">
-                            <p className="text-gray-500 text-lg">No orders found for "{searchName}".</p>
+                        <div className="text-center py-12 bg-white/5 rounded-lg border border-[var(--border-color)]">
+                            <p className="opacity-60 text-lg">No orders found for "{searchName}".</p>
                         </div>
                     ) : (
                         orders.map(order => (
-                            <div key={order._id} className="bg-white rounded-xl shadow overflow-hidden border border-gray-100">
-                                <div className="bg-gray-50 px-6 py-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <div key={order._id} className="theme-card rounded-xl shadow overflow-hidden border border-[var(--border-color)]">
+                                <div className="bg-white/5 px-6 py-4 border-b border-[var(--border-color)] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                                     <div>
-                                        <p className="text-sm text-gray-500">Order ID: <span className="font-mono text-gray-700">{order._id}</span></p>
-                                        <p className="text-sm text-gray-500">Placed on: {new Date(order.createdAt).toLocaleDateString()}</p>
+                                        <p className="text-sm opacity-60">Order ID: <span className="font-mono opacity-100 font-bold">{order._id}</span></p>
+                                        <p className="text-sm opacity-60">Placed on: {new Date(order.createdAt).toLocaleDateString()}</p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-xl font-bold text-gray-900">₹{order.totalAmount.toFixed(2)}</p>
+                                        <p className="text-xl font-bold">₹{order.totalAmount.toFixed(2)}</p>
                                         <span className={`inline-block px-3 py-1 text-xs rounded-full ${order.status === 'Pending' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800'
                                             }`}>
                                             {order.status}
@@ -76,18 +76,18 @@ const OrdersPage = () => {
                                     </div>
                                 </div>
                                 <div className="p-6">
-                                    <h4 className="font-semibold text-gray-700 mb-3">Items:</h4>
+                                    <h4 className="font-semibold mb-3">Items:</h4>
                                     <ul className="space-y-2">
                                         {order.items.map((item, index) => (
-                                            <li key={index} className="flex justify-between text-sm border-b pb-2 last:border-0 last:pb-0">
-                                                <span className="text-gray-800">
+                                            <li key={index} className="flex justify-between text-sm border-b border-[var(--border-color)] pb-2 last:border-0 last:pb-0">
+                                                <span className="opacity-90">
                                                     Quantity: {item.quantity} (Book ID: {item.bookId})
                                                     {/* Ideally populate book title in backend aggregation, but ID is fine for now/MVP */}
                                                 </span>
                                             </li>
                                         ))}
                                     </ul>
-                                    <div className="mt-4 pt-4 border-t text-sm text-gray-600">
+                                    <div className="mt-4 pt-4 border-t border-[var(--border-color)] text-sm opacity-70">
                                         <span className="font-semibold">Shipping to:</span> {order.address}
                                     </div>
                                 </div>

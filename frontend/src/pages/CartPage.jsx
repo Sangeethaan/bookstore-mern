@@ -62,14 +62,14 @@ const CartPage = () => {
 
     return (
         <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-800">
+            <h1 className="text-3xl font-bold mb-8 flex items-center gap-3">
                 <FaShoppingBag className="text-blue-600" /> Your Shopping Cart
             </h1>
 
             {cart.length === 0 ? (
-                <div className="bg-white p-12 rounded-xl shadow text-center">
+                <div className="theme-card p-12 rounded-xl shadow text-center">
                     <div className="text-gray-300 mb-4 flex justify-center"><FaShoppingBag size={64} /></div>
-                    <h2 className="text-xl text-gray-600">Your cart is empty.</h2>
+                    <h2 className="text-xl opacity-70">Your cart is empty.</h2>
                     <button onClick={() => navigate('/')} className="mt-6 text-blue-600 font-medium hover:underline">
                         Go back to shopping
                     </button>
@@ -78,7 +78,7 @@ const CartPage = () => {
                 <div className="flex flex-col md:flex-row gap-8">
                     <div className="flex-1 space-y-4">
                         {cart.map(item => (
-                            <div key={item.bookId} className="bg-white p-4 rounded-lg shadow-sm flex items-center justify-between border border-gray-100">
+                            <div key={item.bookId} className="theme-card p-4 rounded-lg shadow-sm flex items-center justify-between border border-[var(--border-color)]">
                                 <div className="flex items-center gap-4">
                                     {item.imageUrl ? (
                                         <img src={item.imageUrl} alt={item.title} className="w-16 h-20 object-cover rounded" />
@@ -86,16 +86,16 @@ const CartPage = () => {
                                         <div className="w-16 h-20 bg-gray-200 rounded flex items-center justify-center text-gray-400">?</div>
                                     )}
                                     <div>
-                                        <h3 className="font-bold text-lg text-gray-800">{item.title}</h3>
+                                        <h3 className="font-bold text-lg">{item.title}</h3>
                                         <p className="text-blue-600 font-medium">₹{item.price}</p>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center gap-6">
-                                    <div className="flex items-center border rounded">
-                                        <button onClick={() => updateQuantity(item.bookId, item.quantity - 1)} className="px-3 py-1 hover:bg-gray-100 text-gray-600">-</button>
+                                    <div className="flex items-center border border-[var(--border-color)] rounded">
+                                        <button onClick={() => updateQuantity(item.bookId, item.quantity - 1)} className="px-3 py-1 hover:bg-white/10 opacity-70">-</button>
                                         <span className="px-3 font-medium">{item.quantity}</span>
-                                        <button onClick={() => updateQuantity(item.bookId, item.quantity + 1)} className="px-3 py-1 hover:bg-gray-100 text-gray-600">+</button>
+                                        <button onClick={() => updateQuantity(item.bookId, item.quantity + 1)} className="px-3 py-1 hover:bg-white/10 opacity-70">+</button>
                                     </div>
                                     <button onClick={() => removeFromCart(item.bookId)} className="text-red-400 hover:text-red-600 p-2 rounded-full hover:bg-red-50 transition">
                                         <FaTrash />
@@ -106,29 +106,29 @@ const CartPage = () => {
                     </div>
 
                     <div className="md:w-80">
-                        <div className="bg-white p-6 rounded-xl shadow sticky top-4">
-                            <h2 className="text-lg font-bold mb-4 border-b pb-2">Order Summary</h2>
-                            <div className="flex justify-between mb-2 text-gray-600">
+                        <div className="theme-card p-6 rounded-xl shadow sticky top-4">
+                            <h2 className="text-lg font-bold mb-4 border-b border-[var(--border-color)] pb-2">Order Summary</h2>
+                            <div className="flex justify-between mb-2 opacity-70">
                                 <span>Items ({cart.reduce((a, c) => a + c.quantity, 0)})</span>
                                 <span>₹{calculateTotal()}</span>
                             </div>
-                            <div className="flex justify-between mb-6 text-xl font-bold text-gray-900 border-t pt-2 mt-2">
+                            <div className="flex justify-between mb-6 text-xl font-bold border-t border-[var(--border-color)] pt-2 mt-2">
                                 <span>Total</span>
                                 <span>₹{calculateTotal()}</span>
                             </div>
 
                             <div className="space-y-4">
-                                <h3 className="font-semibold text-gray-700">Checkout Details</h3>
+                                <h3 className="font-semibold">Checkout Details</h3>
                                 <input
                                     type="text"
                                     placeholder="Full Name"
-                                    className="w-full border rounded p-2 text-sm"
+                                    className="w-full border border-[var(--border-color)] rounded p-2 text-sm bg-[var(--input-bg)] text-[var(--text-color)]"
                                     id="customerName"
                                 />
                                 <input
                                     type="text"
                                     placeholder="Shipping Address"
-                                    className="w-full border rounded p-2 text-sm"
+                                    className="w-full border border-[var(--border-color)] rounded p-2 text-sm bg-[var(--input-bg)] text-[var(--text-color)]"
                                     id="address"
                                 />
                                 <button
